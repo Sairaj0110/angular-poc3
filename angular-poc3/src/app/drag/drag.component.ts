@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DragComponent{
 
-  show:boolean = false
+  show1:boolean = false
+  show2:boolean = false
   allowDrop(ev) {
     ev.preventDefault();
   }
@@ -15,8 +16,17 @@ export class DragComponent{
   drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
     if(ev.target.id == 'drag1'){
-      this.show = true;
+      if(ev.target.offsetParent.id == 'div2'){
+        this.show1 = false
+      }else
+      this.show1 = true;
+    }else    if(ev.target.id == 'drag2'){
+      if(ev.target.offsetParent.id == 'div2'){
+        this.show2 = false
+      }else
+      this.show2 = true;
     }
+    
   }
 
   drop(ev) {
